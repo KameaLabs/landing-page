@@ -1,25 +1,22 @@
+import { progressSteps } from "@/pages";
+import Layout from "@/sections/Layout";
+import Payment from "@/sections/Payment";
 import PresentationForm from "@/sections/PresentationForm";
+import SAFTSigning from "@/sections/SAFTSigning";
+import SynapsKYC from "@/sections/SynapsKYC";
+import WalletLinking from "@/sections/WalletLinking";
 
-export default function SectionContainer({ activeStep }: any) {
+export default function SectionContainer({ activeStep, setActiveStep }: any) {
   return (
-    <div className="flex flex-col justify-between min-h-full">
-      <div className="p-6 pb-12">
-        Logion is building the safe digital ownership infrastructure for a Web3
-        era. You may contribute to this project by pre-buy future logion's token
-        (LGNT). As it's an early stage project, this opportunity is restricted
-        to investors who understand all related risks - you can lose the entire
-        invested amount - of such investment.
-      </div>
-      {activeStep === 0 && <PresentationForm />}
-      {activeStep === 1 && "Synaps KYC"}
-
-      <div>
-        Logion is building the safe digital ownership infrastructure for a Web3
-        era. You may contribute to this project by pre-buy future logion's token
-        (LGNT). As it's an early stage project, this opportunity is restricted
-        to investors who understand all related risks - you can lose the entire
-        invested amount - of such investment.
-      </div>
-    </div>
+    <Layout>
+      <h1 className="text-4xl p-2 pb-6 text-center">
+        {progressSteps[activeStep]}
+      </h1>
+      {activeStep === 0 && <PresentationForm setActiveStep={setActiveStep} />}
+      {activeStep === 1 && <SynapsKYC />}
+      {activeStep === 2 && <SAFTSigning />}
+      {activeStep === 3 && <WalletLinking />}
+      {activeStep === 4 && <Payment />}
+    </Layout>
   );
 }

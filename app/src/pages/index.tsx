@@ -17,11 +17,27 @@ export default function Home() {
       </Head>
       <main className="min-h-full">
         <Header />
-        <div className="flex gap-2">
+        <div className="p-6 pl-16">{text}</div>
+        <div className="flex flex-col gap-2 sm:flex-row ">
           <ProgressBar activeStep={activeStep} setActiveStep={setActiveStep} />
-          <SectionContainer activeStep={activeStep} />
+          <SectionContainer
+            activeStep={activeStep}
+            setActiveStep={setActiveStep}
+          />
         </div>
+        <div className="absolute bottom-0 p-6 pl-16">{text}</div>
       </main>
     </>
   );
 }
+
+const text =
+  " Logion is building the safe digital ownership infrastructure for a Web3 era. You may contribute to this project by pre-buy future logion's token (LGNT). As it's an early stage project, this opportunity is restricted to investors who understand all related risks - you can lose the entire invested amount - of such investment.";
+
+export const progressSteps = [
+  "Presentation from",
+  "Synaps KYC",
+  "SAFT Signing",
+  "Wallet linking",
+  "Payment",
+];
