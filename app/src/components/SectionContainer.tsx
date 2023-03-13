@@ -15,7 +15,7 @@ export default function SectionContainer({ activeStep, setActiveStep }: any) {
       {activeStep === 0 && <PresentationForm setActiveStep={setActiveStep} />}
       {activeStep === 1 && <SynapsKYC />}
       {activeStep === 2 && <SAFTSigning />}
-      {activeStep === 3 && <WalletLinking />}
+      {activeStep === 3 && <WalletLinking setActiveStep={setActiveStep} />}
       {activeStep === 4 && <Payment />}
     </Layout>
   );
