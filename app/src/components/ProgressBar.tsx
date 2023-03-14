@@ -19,7 +19,7 @@ export default function ProgressBar({ activeStep, setActiveStep }: any) {
             {i + 1}
           </div>
           <div
-            className={`font-bold ${
+            className={` ${
               activeStep === i ? "text-secoundary" : "text-gray-300"
             }`}
           >

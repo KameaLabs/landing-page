@@ -2,6 +2,8 @@ import Button from "@/components/Button";
 import { injected } from "@/utils/connectors";
 import { useWeb3React } from "@web3-react/core";
 import Image from "next/image";
+import { TbSignature } from "react-icons/tb";
+import { MdPayment } from "react-icons/md";
 
 export default function WalletLinking({ setActiveStep }: any) {
   const { active, account, library, connector, activate, deactivate } =
@@ -44,10 +46,11 @@ export default function WalletLinking({ setActiveStep }: any) {
       )}
       {active ? (
         <>
-          <Button text={"Sign message"} onClick={sign} />
+          <Button text={"Sign message"} onClick={sign} icon={<TbSignature />} />
           <Button
             text={"Continue to payment"}
             onClick={() => setActiveStep((i: number) => i + 1)}
+            icon={<MdPayment />}
           />
         </>
       ) : (

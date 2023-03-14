@@ -18,8 +18,8 @@ export default function Home() {
       <main className="min-h-screen">
         <Header />
         <div className="p-3 text-primary text-center text-sm">
-          <div>{text1}</div>
-          <div>{text2}</div>
+          <div className="font-normal">{text1}</div>
+          <div className="font-normal">{text2}</div>
         </div>
         <ProgressBar activeStep={activeStep} setActiveStep={setActiveStep} />
         <SectionContainer
@@ -28,8 +28,8 @@ export default function Home() {
         />
       </main>
       <div className="sticky bottom-0 p-3 bg-primary text-white text-center text-sm w-full">
-        <div>{text1}</div>
-        <div>{text2}</div>
+        <div className="font-normal">{text1}</div>
+        <div className="font-normal">{text2}</div>
       </div>
     </>
   );
