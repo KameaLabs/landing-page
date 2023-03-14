@@ -9,13 +9,10 @@ import WalletLinking from "@/sections/WalletLinking";
 export default function SectionContainer({ activeStep, setActiveStep }: any) {
   return (
     <Layout>
-      <h1 className="text-4xl p-2 pb-6 text-center">
-        {progressSteps[activeStep]}
-      </h1>
       {activeStep === 0 && <PresentationForm setActiveStep={setActiveStep} />}
       {activeStep === 1 && <SynapsKYC />}
-      {activeStep === 2 && <SAFTSigning />}
-      {activeStep === 3 && <WalletLinking setActiveStep={setActiveStep} />}
+      {activeStep === 2 && <WalletLinking setActiveStep={setActiveStep} />}
+      {activeStep === 3 && <SAFTSigning />}
       {activeStep === 4 && <Payment />}
     </Layout>
   );

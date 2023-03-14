@@ -1,10 +1,15 @@
-export default function Button({ text, onClick }: any) {
+export default function Button({ text, onClick, reverse, icon }: any) {
   return (
     <button
-      className="bg-white text-black rounded-md p-2 w-full"
+      className={`flex items-center justify-center gap-3 font-[600]
+      ${
+        reverse
+          ? "bg-secoundary text-white  border-secoundary"
+          : "bg-white text-secoundary border-primary"
+      } border  rounded-md p-2 min-w-[20rem] max-w-[30rem]`}
       onClick={onClick}
     >
-      {text}
+      <span>{icon}</span> {text}
     </button>
   );
 }

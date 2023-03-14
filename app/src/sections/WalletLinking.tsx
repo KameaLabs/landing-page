@@ -1,10 +1,20 @@
 import Button from "@/components/Button";
 import { injected } from "@/utils/connectors";
 import { useWeb3React } from "@web3-react/core";
+import Image from "next/image";
 
 export default function WalletLinking({ setActiveStep }: any) {
   const { active, account, library, connector, activate, deactivate } =
     useWeb3React();
+  const metaMaskIcon = (
+    <Image src={"/svg/metamask.svg"} height={25} width={25} alt={""} />
+  );
+  const talisman = (
+    <Image src={"/png/talisman.png"} height={25} width={25} alt={""} />
+  );
+  const novawallet = (
+    <Image src={"/png/novawallet.png"} height={25} width={25} alt={""} />
+  );
 
   const connect = async () => {
     try {
@@ -42,9 +52,13 @@ export default function WalletLinking({ setActiveStep }: any) {
         </>
       ) : (
         <>
-          <Button text={"Connect Metamask"} onClick={connect} />
-          <Button text={"Connect Talisman"} />
-          <Button text={"Connect Nova Wallet"} />
+          <Button
+            text={"Connect Metamask"}
+            onClick={connect}
+            icon={metaMaskIcon}
+          />
+          <Button text={"Connect Talisman"} icon={talisman} />
+          <Button text={"Connect Nova Wallet"} icon={novawallet} />
         </>
       )}
     </div>

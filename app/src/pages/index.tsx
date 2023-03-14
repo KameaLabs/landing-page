@@ -15,29 +15,35 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="min-h-full">
+      <main className="min-h-screen">
         <Header />
-        <div className="p-6 pl-16">{text}</div>
-        <div className="flex flex-col gap-2 sm:flex-row ">
-          <ProgressBar activeStep={activeStep} setActiveStep={setActiveStep} />
-          <SectionContainer
-            activeStep={activeStep}
-            setActiveStep={setActiveStep}
-          />
+        <div className="p-3 text-primary text-center text-sm">
+          <div>{text1}</div>
+          <div>{text2}</div>
         </div>
-        <div className="absolute bottom-0 p-6 pl-16">{text}</div>
+        <ProgressBar activeStep={activeStep} setActiveStep={setActiveStep} />
+        <SectionContainer
+          activeStep={activeStep}
+          setActiveStep={setActiveStep}
+        />
       </main>
+      <div className="sticky bottom-0 p-3 bg-primary text-white text-center text-sm w-full">
+        <div>{text1}</div>
+        <div>{text2}</div>
+      </div>
     </>
   );
 }
 
-const text =
-  " Logion is building the safe digital ownership infrastructure for a Web3 era. You may contribute to this project by pre-buy future logion's token (LGNT). As it's an early stage project, this opportunity is restricted to investors who understand all related risks - you can lose the entire invested amount - of such investment.";
+const text1 =
+  " Logion is building the safe digital ownership infrastructure for a Web3 era. You may contribute to this project by pre-buy future logion's token (LGNT).";
+const text2 =
+  " As it's an early stage project, this opportunity is restricted to investors who understand all related risks - you can lose the entire invested amount - of such investment.";
 
 export const progressSteps = [
   "Presentation from",
   "Synaps KYC",
-  "SAFT Signing",
   "Wallet linking",
+  "SAFT Signing",
   "Payment",
 ];

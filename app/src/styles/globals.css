@@ -3,8 +3,6 @@
 @tailwind utilities;
 
 body {
-  background-color: #18161c;
-  color: white;
   min-height: 100vh;
 }
 .scrollbar-hide::-webkit-scrollbar {
