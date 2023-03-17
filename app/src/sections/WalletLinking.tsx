@@ -1,5 +1,5 @@
 import Button from "@/components/Button";
-import { connectWallet, injected } from "@/utils/connectors";
+import { connectWallet } from "@/utils/connectors";
 import { useWeb3React } from "@web3-react/core";
 import Image from "next/image";
 import { TbSignature } from "react-icons/tb";
@@ -37,17 +37,18 @@ export default function WalletLinking({ setActiveStep }: any) {
           />
         </>
       ) : (
-        walletBtnList.map((item) => (
+        walletBtnList.map((wallet, i) => (
           <Button
-            text={item.text}
+            key={i}
+            text={wallet.text}
             onClick={() =>
               connectWallet({
                 activate,
-                url: item.url,
-                walletName: item.walletName,
+                url: wallet.url,
+                walletName: wallet.name,
               })
             }
-            icon={item.icon}
+            icon={wallet.icon}
           />
         ))
       )}
@@ -57,13 +58,13 @@ export default function WalletLinking({ setActiveStep }: any) {
 
 const walletBtnList = [
   {
-    walletName: "Metamask",
+    name: "Metamask",
     icon: <Image src={"/svg/metamask.svg"} height={25} width={25} alt={""} />,
     text: "Connect Metamask",
     url: "https://metamask.io/download/",
   },
   {
-    walletName: "Talisman",
+    name: "Talisman",
     icon: <Image src={"/png/talisman.png"} height={25} width={25} alt={""} />,
     text: "Connect Talisman",
     url: "https://www.talisman.xyz/download/",

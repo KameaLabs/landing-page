@@ -9,13 +9,15 @@ export const connectWallet = async ({ activate, url, walletName }: any) => {
     switch (walletName) {
       case "Metamask":
         // @ts-ignore
-        return Boolean(window.ethereum && window.ethereum.isMetaMask);
+        return Boolean(!!window.ethereum && window.ethereum.isMetaMask);
       case "Talisman":
         // @ts-ignore
-        return Boolean(window.Talisman);
+        return Boolean(!!window.Talisman);
+      default:
+        return false;
     }
   };
-  if (!isWalletInstalled()) return window.open(url, "_blank");
+  if (!isWalletInstalled()) window.open(url, "_blank");
   try {
     await activate(injected);
   } catch (ex) {
