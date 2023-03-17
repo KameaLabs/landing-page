@@ -1,5 +1,5 @@
 import Button from "@/components/Button";
-import { injected } from "@/utils/connectors";
+import { connectWallet, injected } from "@/utils/connectors";
 import { useWeb3React } from "@web3-react/core";
 import Image from "next/image";
 import { TbSignature } from "react-icons/tb";
@@ -8,23 +8,6 @@ import { MdPayment } from "react-icons/md";
 export default function WalletLinking({ setActiveStep }: any) {
   const { active, account, library, connector, activate, deactivate } =
     useWeb3React();
-  const metaMaskIcon = (
-    <Image src={"/svg/metamask.svg"} height={25} width={25} alt={""} />
-  );
-  const talisman = (
-    <Image src={"/png/talisman.png"} height={25} width={25} alt={""} />
-  );
-  const novawallet = (
-    <Image src={"/png/novawallet.png"} height={25} width={25} alt={""} />
-  );
-
-  const connect = async () => {
-    try {
-      await activate(injected);
-    } catch (ex) {
-      console.log(ex);
-    }
-  };
 
   const disconnect = async () => {
     try {
@@ -54,16 +37,41 @@ export default function WalletLinking({ setActiveStep }: any) {
           />
         </>
       ) : (
-        <>
+        walletBtnList.map((item) => (
           <Button
-            text={"Connect Metamask"}
-            onClick={connect}
-            icon={metaMaskIcon}
+            text={item.text}
+            onClick={() =>
+              connectWallet({
+                activate,
+                url: item.url,
+                walletName: item.walletName,
+              })
+            }
+            icon={item.icon}
           />
-          <Button text={"Connect Talisman"} icon={talisman} />
-          <Button text={"Connect Nova Wallet"} icon={novawallet} />
-        </>
+        ))
       )}
     </div>
   );
 }
+
+const walletBtnList = [
+  {
+    walletName: "Metamask",
+    icon: <Image src={"/svg/metamask.svg"} height={25} width={25} alt={""} />,
+    text: "Connect Metamask",
+    url: "https://metamask.io/download/",
+  },
+  {
+    walletName: "Talisman",
+    icon: <Image src={"/png/talisman.png"} height={25} width={25} alt={""} />,
+    text: "Connect Talisman",
+    url: "https://www.talisman.xyz/download/",
+  },
+  {
+    walletName: "Nova",
+    icon: <Image src={"/png/novawallet.png"} height={25} width={25} alt={""} />,
+    text: "Connect Nova Wallet",
+    url: "",
+  },
+];
