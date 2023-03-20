@@ -26,9 +26,11 @@ export default function WalletLinking({ setActiveStep }: any) {
           <div> {account}</div>
           <div>Now you need to sign a message from your wallet</div>
           {/* <Button text={"Disconnect"} onClick={disconnect} /> */}
-          <div className="bg-red-200 p-2 border border-red-500 rounded overflow-hidden">
-            {error}
-          </div>
+          {error && (
+            <div className="bg-red-200 p-2 border border-red-500 rounded overflow-hidden">
+              {error}
+            </div>
+          )}
         </div>
       )}
       {active ? (
