@@ -21,7 +21,7 @@ export default function Header() {
           />
         </div>
       </div>
-      <div className="bg-primary text-white text-center p-1">
+      <div className="bg-primary text-white text-center p-2">
         Welcome to Crunch DAO Kamea Labs Primary Sale
       </div>
     </>

@@ -1,8 +1,8 @@
-export default function ErrorMsg({ msg }: any) {
-  return Object.keys(msg).length ? (
-    <div className="bg-orange-200 border border-secoundary rounded-md px-2 py-1">
+export default function ErrorMsgs({ msgs }: any) {
+  return Object.keys(msgs).length ? (
+    <div className="bg-orange-50 border border-orange-300 rounded-md px-2 py-1">
       <ul>
-        {Object.entries(msg).map(([key, value]) => (
+        {Object.entries(msgs).map(([key, value]) => (
           <li key={key}>
             <>- {value}</>
           </li>
@@ -11,5 +11,13 @@ export default function ErrorMsg({ msg }: any) {
     </div>
   ) : (
     <></>
+  );
+}
+
+export function ErrorMsg({ msg }: any) {
+  return (
+    <div className="bg-orange-50 border border-orange-300 rounded-md px-2 py-1">
+      {msg}
+    </div>
   );
 }

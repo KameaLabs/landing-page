@@ -5,11 +5,15 @@ import Image from "next/image";
 import { TbSignature } from "react-icons/tb";
 import { MdPayment } from "react-icons/md";
 import { useState } from "react";
+import Box from "@/components/Box";
+import { stringShorten } from "@/utils/stringShorten";
+import { ErrorMsg } from "@/components/ErrorMsg";
 
 export default function WalletLinking({ setActiveStep }: any) {
   const { active, account, library, connector, activate, deactivate } =
     useWeb3React();
   const [error, setError] = useState();
+  const [isSigned, setIsSigned] = useState<boolean>(false);
 
   const disconnect = async () => {
     try {
@@ -22,35 +26,38 @@ export default function WalletLinking({ setActiveStep }: any) {
     <div className="max-w-[26rem] p-4 flex flex-col gap-4 mx-auto">
       {active && (
         <div className="text-center flex flex-col gap-4 p-4">
-          <div>Your are connected with this adress :</div>
-          <div> {account}</div>
-          <div>Now you need to sign a message from your wallet</div>
+          <Box>
+            <div>Your are connected with this adress :</div>
+            <div>{stringShorten(account)}</div>
+            <div>Now you need to sign a message from your wallet</div>
+          </Box>
           {/* <Button text={"Disconnect"} onClick={disconnect} /> */}
-          {error && (
-            <div className="bg-red-200 p-2 border border-red-500 rounded overflow-hidden">
-              {error}
-            </div>
-          )}
+          {error && <ErrorMsg msg={error} />}
         </div>
       )}
       {active ? (
         <>
-          <Button
-            text={"Sign message"}
-            onClick={() =>
-              payment({
-                setError,
-                addr: "0xfb9F41FeeA28CAa89362d897C5a90Af6e9e96BeE",
-                ether: "0.00003",
-              })
-            }
-            icon={<TbSignature />}
-          />
-          <Button
-            text={"Continue to payment"}
-            onClick={() => setActiveStep((i: number) => i + 1)}
-            icon={<MdPayment />}
-          />
+          {!isSigned ? (
+            <Button
+              text={"Sign message"}
+              onClick={() =>
+                payment({
+                  setError,
+                  addr: "0xfb9F41FeeA28CAa89362d897C5a90Af6e9e96BeE",
+                  ether: "0.00003",
+                })
+              }
+              reverse={true}
+              icon={<TbSignature />}
+            />
+          ) : (
+            <Button
+              text={"Continue to payment"}
+              onClick={() => setActiveStep((i: number) => i + 1)}
+              icon={<MdPayment />}
+              reverse={true}
+            />
+          )}
         </>
       ) : (
         walletBtnList.map((wallet, i) => (

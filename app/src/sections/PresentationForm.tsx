@@ -6,7 +6,7 @@ import { GiCash } from "react-icons/gi";
 import { BsBank } from "react-icons/bs";
 import { useRef, useState } from "react";
 import validation from "@/utils/validation";
-import ErrorMsg from "@/components/ErrorMsg";
+import ErrorMsgs from "@/components/ErrorMsg";
 import RadioGroup from "@/components/RadioGroup";
 
 export default function PresentationForm({ setActiveStep }: any) {
@@ -14,7 +14,7 @@ export default function PresentationForm({ setActiveStep }: any) {
   const mailRef = useRef<HTMLInputElement>(null);
   const amountRef = useRef<HTMLInputElement>();
   const [paymentMethod, setPaymentMethod] = useState("");
-  const [msg, setMsg] = useState({});
+  const [msgs, setMsgs] = useState({});
 
   const handleClick = () => {
     const userInput = {
@@ -24,7 +24,7 @@ export default function PresentationForm({ setActiveStep }: any) {
       paymentMethod,
     };
     const valid = validation(userInput);
-    if (valid !== true) return setMsg(valid);
+    if (valid !== true) return setMsgs(valid);
     // if storing the data needed should start from this point
     // localStorage.setItem("userInput", JSON.stringify(userInput));
     setActiveStep((i: number) => i + 1);
@@ -47,7 +47,7 @@ export default function PresentationForm({ setActiveStep }: any) {
           setValue={setPaymentMethod}
           radioList={radioList}
         />
-        <ErrorMsg msg={msg} />
+        <ErrorMsgs msgs={msgs} />
 
         <div className="mx-auto w-fit">
           <Button

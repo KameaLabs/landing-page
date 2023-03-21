@@ -1,4 +1,3 @@
-import { progressSteps } from "@/pages";
 import Layout from "@/sections/Layout";
 import Payment from "@/sections/Payment";
 import PresentationForm from "@/sections/PresentationForm";
@@ -12,7 +11,7 @@ export default function SectionContainer({ activeStep, setActiveStep }: any) {
       {activeStep === 0 && <PresentationForm setActiveStep={setActiveStep} />}
       {activeStep === 1 && <SynapsKYC />}
       {activeStep === 2 && <WalletLinking setActiveStep={setActiveStep} />}
-      {activeStep === 3 && <SAFTSigning />}
+      {activeStep === 3 && <SAFTSigning setActiveStep={setActiveStep} />}
       {activeStep === 4 && <Payment />}
     </Layout>
   );

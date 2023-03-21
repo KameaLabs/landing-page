@@ -1,7 +1,7 @@
 export default function Button({ text, onClick, reverse, icon }: any) {
   return (
     <button
-      className={`flex items-center justify-center gap-3
+      className={`flex items-center justify-center gap-3 mx-auto
       ${
         reverse
           ? "bg-secoundary text-white  border-secoundary"
