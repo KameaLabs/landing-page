@@ -2,7 +2,7 @@ import { InjectedConnector } from "@web3-react/injected-connector";
 import { ethers } from "ethers";
 
 export const injected = new InjectedConnector({
-  supportedChainIds: [1, 3, 4, 5, 42, 137],
+  supportedChainIds: [1, 3, 4, 5, 42, 137, 11155111],
 });
 
 export const connectWallet = async ({ activate, url, walletName }: any) => {
@@ -20,7 +20,6 @@ export const connectWallet = async ({ activate, url, walletName }: any) => {
   };
   if (!isWalletInstalled()) window.open(url, "_blank");
   else {
-    console.log("Wallet installed");
     try {
       await activate(injected);
     } catch (ex) {
@@ -29,7 +28,7 @@ export const connectWallet = async ({ activate, url, walletName }: any) => {
   }
 };
 
-export const payment = async ({ setError, addr, ether }: any) => {
+export const payment = async ({ setError, setIsSigned, addr, ether }: any) => {
   try {
     // @ts-ignore
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -40,6 +39,7 @@ export const payment = async ({ setError, addr, ether }: any) => {
       value: ethers.utils.parseEther(ether),
     });
     console.log({ tx, ether, addr });
+    setIsSigned(true);
   } catch (err: any) {
     setError(err.message);
   }

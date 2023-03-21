@@ -12,7 +12,7 @@ import { ErrorMsg } from "@/components/ErrorMsg";
 export default function WalletLinking({ setActiveStep }: any) {
   const { active, account, library, connector, activate, deactivate } =
     useWeb3React();
-  const [error, setError] = useState();
+  const [error, setError] = useState<string>("");
   const [isSigned, setIsSigned] = useState<boolean>(false);
 
   const disconnect = async () => {
@@ -32,7 +32,13 @@ export default function WalletLinking({ setActiveStep }: any) {
             <div>Now you need to sign a message from your wallet</div>
           </Box>
           {/* <Button text={"Disconnect"} onClick={disconnect} /> */}
-          {error && <ErrorMsg msg={error} />}
+          {error.includes("insufficient funds") && (
+            <ErrorMsg
+              msg={
+                "Insufficient funds: Please make sure your wallet contains the selected amount"
+              }
+            />
+          )}
         </div>
       )}
       {active ? (
@@ -43,6 +49,7 @@ export default function WalletLinking({ setActiveStep }: any) {
               onClick={() =>
                 payment({
                   setError,
+                  setIsSigned,
                   addr: "0xfb9F41FeeA28CAa89362d897C5a90Af6e9e96BeE",
                   ether: "0.00003",
                 })
