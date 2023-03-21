@@ -23,7 +23,7 @@ export default function WalletLinking({ setActiveStep }: any) {
     }
   };
   return (
-    <div className="max-w-[26rem] p-4 flex flex-col gap-4 mx-auto">
+    <div className="max-w-[30rem] p-4 flex flex-col gap-4 mx-auto leading-6">
       {active && (
         <div className="text-center flex flex-col gap-4 p-4">
           <Box>
@@ -31,7 +31,6 @@ export default function WalletLinking({ setActiveStep }: any) {
             <div>{stringShorten(account)}</div>
             <div>Now you need to sign a message from your wallet</div>
           </Box>
-          {/* <Button text={"Disconnect"} onClick={disconnect} /> */}
           {error.includes("insufficient funds") && (
             <ErrorMsg
               msg={

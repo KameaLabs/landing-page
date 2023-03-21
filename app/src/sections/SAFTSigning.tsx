@@ -6,11 +6,24 @@ export default function SAFTSigning({ setActiveStep }: any) {
   return (
     <div className="max-w-[30rem] mx-auto">
       <div>Contract:</div>
-      <div>
+      <div className="max-h-[20rem] overflow-scroll border border-primary p-2">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto
         voluptates eveniet illo culpa? Aliquid aspernatur beatae consequuntur
         animi molestias quibusdam. Ea debitis cum dolorem harum, sed enim minima
-        architecto provident?
+        architecto provident? Lorem ipsum dolor sit amet consectetur,
+        adipisicing elit. Architecto voluptates eveniet illo culpa? Aliquid
+        aspernatur beatae consequuntur animi molestias quibusdam. Ea debitis cum
+        dolorem harum, sed enim minima architecto provident? Lorem ipsum dolor
+        sit amet consectetur, adipisicing elit. Architecto voluptates eveniet
+        illo culpa? Aliquid aspernatur beatae consequuntur animi molestias
+        quibusdam. Ea debitis cum dolorem harum, sed enim minima architecto
+        provident? Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+        Architecto voluptates eveniet illo culpa? Aliquid aspernatur beatae
+        consequuntur animi molestias quibusdam. Ea debitis cum dolorem harum,
+        sed enim minima architecto provident? Lorem ipsum dolor sit amet
+        consectetur, adipisicing elit. Architecto voluptates eveniet illo culpa?
+        Aliquid aspernatur beatae consequuntur animi molestias quibusdam. Ea
+        debitis cum dolorem harum, sed enim minima architecto provident?
       </div>
       <div className="pt-6">Signature:</div>
       <div className="border border-primary">
