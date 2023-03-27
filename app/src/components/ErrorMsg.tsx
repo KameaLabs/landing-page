@@ -16,8 +16,10 @@ export default function ErrorMsgs({ msgs }: any) {
 
 export function ErrorMsg({ msg }: any) {
   return (
-    <div className="bg-orange-50 border border-orange-300 rounded-md px-2 py-1 overflow-hidden">
-      {msg}
+    <div className="pt-3">
+      <div className="bg-orange-50 border border-orange-300 rounded-md px-2 py-1 overflow-hidden">
+        {msg}
+      </div>
     </div>
   );
 }

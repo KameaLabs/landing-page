@@ -32,14 +32,12 @@ export default function SAFTSigning({ setActiveStep }: any) {
           canvasProps={{ width: 300, height: 100, className: "sigCanvas" }}
         />
       </div>
-      <div className="p-4 ">
-        <Button
-          text={"Continue to payment"}
-          onClick={() => setActiveStep((i: number) => i + 1)}
-          icon={<MdPayment />}
-          reverse={true}
-        />
-      </div>
+      <Button
+        text={"Continue to payment"}
+        onClick={() => setActiveStep((i: number) => i + 1)}
+        icon={<MdPayment />}
+        reverse={true}
+      />
     </div>
   );
 }

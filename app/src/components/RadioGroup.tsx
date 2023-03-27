@@ -1,6 +1,12 @@
 import RadioBtn from "@/components/RadioBtn";
 
-export default function RadioGroup({ title, icon, setValue, radioList }: any) {
+export default function RadioGroup({
+  title,
+  itemKey,
+  icon,
+  setValue,
+  radioList,
+}: any) {
   return (
     <div className="flex pb-4">
       <div className="flex items-center whitespace-nowrap gap-2">
@@ -15,7 +21,7 @@ export default function RadioGroup({ title, icon, setValue, radioList }: any) {
             key={k}
             name={item.groupName}
             value={item.value}
-            onChange={() => setValue(item.value)}
+            onChange={() => setValue({ itemKey, value: item.value })}
           />
         ))}
       </div>

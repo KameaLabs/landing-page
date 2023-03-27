@@ -1,4 +1,11 @@
-export default function LabeledInput({ label, type, icon, inputRef }: any) {
+export default function LabeledInput({
+  label,
+  type,
+  icon,
+  itemKey,
+  value,
+  setValue,
+}: any) {
   return (
     <div className="flex items-center whitespace-nowrap gap-2">
       <div className="flex gap-2">
@@ -8,7 +15,8 @@ export default function LabeledInput({ label, type, icon, inputRef }: any) {
         {label}:
       </div>
       <input
-        ref={inputRef}
+        value={value}
+        onChange={(e) => setValue({ itemKey, value: e.target.value })}
         type={type}
         className="px-3  text-primary w-full border-b border-primary outline-none"
       />
