@@ -13,16 +13,11 @@ export default function Header() {
           />
         </div>
         <div>
-          <Image
-            src={"/svg/crunch-dao-logo.svg"}
-            alt="Logo"
-            height={80}
-            width={120}
-          />
+          <Image src={"/png/logo.png"} alt="Logo" height={60} width={100} />
         </div>
       </div>
       <div className="bg-primary text-white text-center p-2">
-        Welcome to Crunch DAO Kamea Labs Primary Sale
+        Welcome to the Logion/ Kamea Labs Primary sale
       </div>
     </>
   );

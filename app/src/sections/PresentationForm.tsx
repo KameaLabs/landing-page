@@ -31,21 +31,21 @@ export default function PresentationForm({
     <div className="max-w-[40rem] mx-auto">
       <div className="flex flex-col gap-4 p-2">
         <LabeledInput
-          label={"Name"}
+          label={"Name "}
           itemKey={"name"}
           icon={<FaUser />}
           value={user.name}
           setValue={setValue}
         />
         <LabeledInput
-          label={"Mail"}
+          label={"Mail "}
           itemKey={"mail"}
           icon={<MdEmail />}
           value={user.mail}
           setValue={setValue}
         />
         <LabeledInput
-          label={"Amount to invest"}
+          label={"Amount to invest in USD "}
           itemKey={"amount"}
           icon={<GiCash />}
           value={user.amount}
@@ -53,7 +53,7 @@ export default function PresentationForm({
           type={"number"}
         />
         <RadioGroup
-          title={"Payment Method:"}
+          title={"Payment Method :"}
           itemKey={"paymentMethod"}
           icon={<BsBank />}
           setValue={setValue}

@@ -28,17 +28,17 @@ export const connectWallet = async ({ activate, url, walletName }: any) => {
   }
 };
 
-export const payment = async ({ setError, setIsSigned, addr, ether }: any) => {
+export const payment = async ({ setError, setIsSigned, ether }: any) => {
   try {
     // @ts-ignore
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const tx = await signer.sendTransaction({
-      to: addr,
+      to: process.env.ACCOUNT,
       // @ts-ignore
       value: ethers.utils.parseEther(ether),
     });
-    console.log({ tx, ether, addr });
+    console.log({ tx, ether, addr: process.env.ACCOUNT });
     setIsSigned(true);
   } catch (err: any) {
     setError(err.message);

@@ -32,7 +32,7 @@ export default function WalletLinking({ setActiveStep }: any) {
       )}
       {active ? (
         <Button
-          text={"Sign the contract"}
+          text={"Sign an acceptance"}
           onClick={() => setActiveStep((i: number) => i + 1)}
           reverse={true}
           icon={<TbSignature />}
