@@ -1,5 +1,5 @@
 import Button from "@/components/Button";
-import { connectWallet } from "@/utils/connectors";
+import { connectWallet, signMessage } from "@/utils/connectors";
 import { useWeb3React } from "@web3-react/core";
 import Image from "next/image";
 import { TbSignature } from "react-icons/tb";
@@ -10,7 +10,6 @@ import { ErrorMsg } from "@/components/ErrorMsg";
 
 export default function WalletLinking({ setActiveStep }: any) {
   const { active, account, activate } = useWeb3React();
-
   const [error, setError] = useState<string>("");
 
   return (
@@ -33,7 +32,9 @@ export default function WalletLinking({ setActiveStep }: any) {
       {active ? (
         <Button
           text={"Sign an acceptance"}
-          onClick={() => setActiveStep((i: number) => i + 1)}
+          onClick={() =>
+            signMessage().then(() => setActiveStep((i: number) => i + 1))
+          }
           reverse={true}
           icon={<TbSignature />}
         />

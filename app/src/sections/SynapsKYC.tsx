@@ -17,7 +17,7 @@ export default function SynapsKYC({ setActiveStep }: any) {
       </div>
       <div className="flex justify-center p-2 bg-slate-200 w-full">
         <Synaps
-          sessionId={"95dd770c-843d29b9-802b8d86-32a794aa"}
+          sessionId={"5f4f1ffd-118eb62f-c724de93-78a3b486"}
           service={"individual"}
           lang={"en"}
           onReady={() => console.log("component ready")}

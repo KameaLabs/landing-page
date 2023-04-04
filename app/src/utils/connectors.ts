@@ -44,3 +44,7 @@ export const payment = async ({ setError, setIsSigned, ether }: any) => {
     setError(err.message);
   }
 };
+
+export const signMessage = async () => {
+  alert("sign");
+};
