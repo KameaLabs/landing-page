@@ -1,11 +1,30 @@
 import Button from "@/components/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaInfoCircle } from "react-icons/fa";
 import { MdWallet } from "react-icons/md";
 import Synaps from "@synaps-io/react-verify";
+import axios from "axios";
 
 export default function SynapsKYC({ setActiveStep }: any) {
   const [isVerified, setIsVerified] = useState<boolean>(false);
+  const [sessionId, setSessionId] = useState<string>("");
+
+  useEffect(() => {
+    window &&
+      axios
+        .post(
+          "https://individual-api.synaps.io/v3/session/init",
+          {},
+          {
+            headers: {
+              "Client-Id": "S51A06390DE4B114",
+              "Api-Key": "JaV2f7VEYeUXbf8lhDTErjv64Y8U3HTt",
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => setSessionId(response?.data.session_id));
+  }, []);
 
   return (
     <div className="max-w-[40rem] mx-auto">
@@ -17,7 +36,7 @@ export default function SynapsKYC({ setActiveStep }: any) {
       </div>
       <div className="flex justify-center p-2 bg-slate-200 w-full">
         <Synaps
-          sessionId={"5f4f1ffd-118eb62f-c724de93-78a3b486"}
+          sessionId={sessionId}
           service={"individual"}
           lang={"en"}
           onReady={() => console.log("component ready")}
