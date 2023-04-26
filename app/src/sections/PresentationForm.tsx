@@ -4,7 +4,7 @@ import { FaUser } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { GiCash } from "react-icons/gi";
 import { BsBank } from "react-icons/bs";
-import { useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import validation from "@/utils/validation";
 import ErrorMsgs from "@/components/ErrorMsg";
 import RadioGroup from "@/components/RadioGroup";
@@ -15,11 +15,24 @@ export default function PresentationForm({
   user,
 }: any) {
   const [msgs, setMsgs] = useState({});
+  const [radioList, setRadioList] = useState(defaultRadioList);
+
+  useEffect(() => {
+    setRadioList((prevRadioList) =>
+      prevRadioList?.map((item) =>
+        item?.exchange === user?.exchange
+          ? { ...item, active: true }
+          : { ...item, active: false }
+      )
+    );
+    setUser((user: any) =>
+      Object({ ...user, paymentMethod: exchangeToValues[user?.exchange] })
+    );
+  }, [user.exchange]);
 
   const handleClick = () => {
     const valid = validation(user);
     if (valid !== true) return setMsgs(valid);
-    // if storing the data needed should start from this point
     localStorage.setItem("userInput", JSON.stringify(user));
     setActiveStep((i: number) => i + 1);
   };
@@ -54,7 +67,7 @@ export default function PresentationForm({
         />
         <RadioGroup
           title={"Payment Method :"}
-          itemKey={"paymentMethod"}
+          itemKey={"exchange"}
           icon={<BsBank />}
           setValue={setValue}
           radioList={radioList}
@@ -70,9 +83,34 @@ export default function PresentationForm({
   );
 }
 
-const radioList = [
-  { groupName: "paymentMethod", value: "Eth" },
-  { groupName: "paymentMethod", value: "USDC (erc-20)" },
-  { groupName: "paymentMethod", value: "DOT" },
-  { groupName: "paymentMethod", value: "Bank Transfer" },
+const exchangeToValues: any = {
+  ethereum: "Eth",
+  "usd-coin": "USDC (erc-20)",
+  polkadot: "DOT",
+};
+const defaultRadioList = [
+  {
+    groupName: "paymentMethod",
+    value: "Eth",
+    exchange: "ethereum",
+    active: true,
+  },
+  {
+    groupName: "paymentMethod",
+    value: "USDC (erc-20)",
+    exchange: "usd-coin",
+    active: false,
+  },
+  {
+    groupName: "paymentMethod",
+    value: "DOT",
+    exchange: "polkadot",
+    active: false,
+  },
+  {
+    groupName: "paymentMethod",
+    value: "Bank Transfer",
+    exchange: "",
+    active: false,
+  },
 ];

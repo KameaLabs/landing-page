@@ -1,6 +1,6 @@
 import axios from "axios";
 import { InjectedConnector } from "@web3-react/injected-connector";
-import { Signer, ethers } from "ethers";
+import { ethers } from "ethers";
 
 export const injected = new InjectedConnector({
   supportedChainIds: [1, 3, 4, 5, 42, 137, 11155111],
@@ -82,4 +82,30 @@ export const convertUsdToEth = async (usdAmount: number): Promise<number> => {
   );
   const ethPrice = response.data.ethereum.usd;
   return usdAmount / ethPrice;
+};
+
+interface CryptoPrice {
+  [key: string]: number;
+}
+export const convertUsdToPaymentMethod = async ({
+  exchange,
+  usdAmount,
+}: {
+  exchange: string;
+  usdAmount: number;
+}): Promise<number> => {
+  let apiUrl = `https://api.coingecko.com/api/v3/simple/price?ids=${exchange}&vs_currencies=usd`;
+  try {
+    const response = await axios.get(apiUrl);
+    const prices: CryptoPrice = response.data;
+    const price: any = prices[exchange];
+    if (price) {
+      return usdAmount / price["usd"];
+    } else {
+      throw new Error("Invalid payment method or no price data available");
+    }
+  } catch (error) {
+    console.error(error);
+    throw new Error("Unable to convert USD to crypto");
+  }
 };
